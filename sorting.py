@@ -45,6 +45,17 @@ def bubble_sort(nums):
     return nums
 
 
+def insertion_sort(numbers):
+    for num_i in range(1, len(numbers)):
+        key = numbers[num_i]
+        i = num_i - 1
+        while i >= 0 and numbers[i] > key:
+            numbers[i + 1] = numbers[i]
+            i = i - 1
+        numbers[i + 1] = key
+    return numbers
+
+
 def main():
     data = read_data("numbers.csv")
     print(data)
@@ -52,7 +63,19 @@ def main():
     print(sorted)
     bubbled = bubble_sort(data["series_1"].copy())
     print(bubbled)
+    insertioned = insertion_sort(data["series_1"].copy())
+    print(insertioned)
 
 
 if __name__ == '__main__':
     main()
+    my_list = [3, 8, 1, 2, 32]
+    my_list.sort()
+    my_list = sorted(my_list)
+    my_list = sorted(my_list, reverse=True)
+    print(my_list)
+
+    list_of_words = ["MOO", "meeeoow", "woof", "BZZZZZZ"]
+    list_of_words = sorted(list_of_words, key=len)
+    list_of_words = sorted(list_of_words, key=str.lower)
+    print(list_of_words)
