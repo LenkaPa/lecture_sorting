@@ -22,12 +22,16 @@ def read_data(file_name):
                     data[header].append(int(value))
         return data
 
-def selection_sort(number_array):
+def selection_sort(number_array, direction="ascending"):
     for i in range(len(number_array) - 1):
         min_idx = i
         for num_idx in range(i + 1, len(number_array)):
-            if number_array[min_idx] > number_array[num_idx]:
-                min_idx = num_idx
+            if direction == "ascending":
+                if number_array[min_idx] > number_array[num_idx]:
+                    min_idx = num_idx
+            elif  direction == "descending":
+                if number_array[min_idx] < number_array[num_idx]:
+                    min_idx = num_idx
         number_array[i], number_array[min_idx] = number_array[min_idx], number_array[i]
     return number_array
 
@@ -35,7 +39,7 @@ def selection_sort(number_array):
 def main():
     data = read_data("numbers.csv")
     print(data)
-    sorted = selection_sort(data["series_1"].copy())
+    sorted = selection_sort(data["series_1"].copy(), "descending")
     print(data)
     print(sorted)
 
